@@ -1,0 +1,3 @@
+I det här projektet har jag gjort ett program där man kan boka biobiljetter. Jag har lärt mig att använda variabler och arrayer för att spara information som filmer, tider och priser.
+Jag har använt konstanter för saker som moms och rabatt, och lärt mig hur man tar in och kontrollerar användarens inmatning med int.TryParse.
+Loopar och if-satser kan styra programflödet, till exempel om användaren är student eller inte. Jag har också skapat egna metoder och använt överlagring, där samma metodnamn används på olika sätt.  Till sist skrev jag ut ett kvitto med totalpris och moms, och gjorde programmet lite snyggare med färg i konsolen.
