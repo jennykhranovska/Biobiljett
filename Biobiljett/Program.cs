@@ -20,9 +20,7 @@ namespace Biobiljett
             // Grundpriser
             double[] grundpriser = { 120.0, 110.0, 100.0 };
 
-            Console.WriteLine("Välkommen till biobokningen!");
-            Console.WriteLine("Välj en film nedan:");
-            Console.WriteLine("-------------------------------");
+            Console.WriteLine("Välkommen till biobokningen! Välj en film nedan:");
             
 
             for (int i = 0; i < filmer.Length; i++)
