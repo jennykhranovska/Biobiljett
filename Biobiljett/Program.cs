@@ -12,7 +12,7 @@ namespace Biobiljett
         static void Main(string[] args)
         {
             // Filmer
-            string[] filmer = { "Titanic", "The Lion King", "Star Wars" };
+            string[] filmer = { "Titanic", "The Lion King", "Star Wars" }; 
 
             // Visningstider
             string[] visningstider = { "15:00", "17:30", "20:00" };
@@ -20,13 +20,20 @@ namespace Biobiljett
             // Grundpriser
             double[] grundpriser = { 120.0, 110.0, 100.0 };
 
-            Console.WriteLine("Välkommen till biobokningen! Välj en film nedan:");
-            
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Välkommen till biobokningen!");
+            Console.ResetColor();
+
+            Console.WriteLine("Välj en film nedan:");
+            Console.WriteLine("------------------------");
+
 
             for (int i = 0; i < filmer.Length; i++)
             {
                 Console.WriteLine($"{i + 1}. {filmer[i]} visas kl {visningstider[i]} och kostar {grundpriser[i]} kr.");
             }
+           
+
 
             int filmVal = -1;
             while (true)
@@ -59,8 +66,23 @@ namespace Biobiljett
                 }
             }
 
-            // Ingen fråga om studentrabatt - räkna alltid fullpris
-            double totalPris = CalculatePrice(antalBiljetter, grundpriser[filmVal]);
+
+            Console.WriteLine("Är du student får du rabatt, är du vuxen betalar du fullpris.");
+            Console.WriteLine("Vill du använda studentrabatt? (j/n)");
+            string rabattSvar = Console.ReadLine()?.ToLower();
+
+            bool isStudent = rabattSvar == "j";
+
+            double totalPris;
+
+            if (isStudent)
+            {
+                totalPris = CalculatePrice(antalBiljetter, grundpriser[filmVal], STUDENT_DISCOUNT);
+            }
+            else
+            {
+                totalPris = CalculatePrice(antalBiljetter, grundpriser[filmVal]);
+            }
 
             // Lägg på moms
             double moms = totalPris * TAX_RATE;
@@ -70,7 +92,7 @@ namespace Biobiljett
             Console.WriteLine($"Film: {filmer[filmVal]}");
             Console.WriteLine($"Tid: {visningstider[filmVal]}");
             Console.WriteLine($"Antal biljetter: {antalBiljetter}");
-            Console.WriteLine($"Studentrabatt: Nej");
+            Console.WriteLine($"Studentrabatt: {(isStudent ? "Ja" : "Nej")}");
             Console.WriteLine($"Pris exkl. moms: {totalPris:F2} {CURRENCY}");
             Console.WriteLine($"Moms ({TAX_RATE * 100}%): {moms:F2} {CURRENCY}");
             Console.WriteLine($"Totalt att betala: {prisMedMoms:F2} {CURRENCY}");
